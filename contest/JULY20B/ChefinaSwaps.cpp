@@ -64,7 +64,7 @@ int main()
                 int keyB = itrB.first;
                 int valueB = itrB.second;
 
-                if(valueB>0){
+                if(valueB>0 && a[keyA]>0){
                     cost += min(keyA,keyB);
                     a[keyA]--;
                     b[keyB]--;
