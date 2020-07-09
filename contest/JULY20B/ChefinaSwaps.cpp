@@ -18,10 +18,15 @@ int main()
 
         map<int,int> a;
         map<int,int> b;
+
+        vector<int> a_;
+        vector<int> b_;
         for(int i=0;i<N;i++){
             if(A[i]!=B[i]){
                 a[A[i]]++;
                 b[B[i]]++;
+                a_.push_back(A[i]);
+                b_.push_back(B[i]);
             }
         }
 
@@ -56,22 +61,16 @@ int main()
         }
 
         int cost = 0;
-        for(auto itrA: a){
-            int keyA = itrA.first;
-            int valueA = itrA.second;
-            if(valueA>0)
-            for(auto itrB: b){
-                int keyB = itrB.first;
-                int valueB = itrB.second;
 
-                if(valueB>0 && a[keyA]>0){
-                    cost += min(keyA,keyB);
-                    a[keyA]--;
-                    b[keyB]--;
-                }
-            }
-
+        sort(a_.begin(), a_.end(), greater<int>());
+        int len = a_.size();
+        for(int i=0;i<len;i++){
+            cost+=min(a_[i],b_[i]);
         }
+
+        cost/=2;
+
+
         cout<<cost<<endl;
 
     }
